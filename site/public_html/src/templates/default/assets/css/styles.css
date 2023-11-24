@@ -1,14 +1,17 @@
 *, *:after, *:before{
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
     font-family: Roboto;
+    font-weight: 600;
+}
+*:focus{
+    outline: none;
 }
 body{
     margin: 0;
     padding: 0;
-    background: #F6F6F6;
-}
-video{
-    vertical-align: center;
+    /*background: #F6F6F6;*/
 }
 a{
     text-decoration: none;
@@ -17,11 +20,120 @@ a{
 button, label, a{
     cursor: pointer;
 }
-form{
+input[type=file]{
+    display: none;
+}
+em{
+    font-style: unset;
+    color: #588f04;
+}
+.label{
+    display: flex;
+    padding: 5px 10px;
+    background: #eee;
+    color: #c3c3c3;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    max-width: 250px;
+}
+.upload-section{
+    width: 30%;
+}
+.section{
+    /*padding: 0 100px;*/
     display: flex;
     flex-direction: column;
-    min-width: 500px;
+    margin-top: 5%;
+    gap: 10px;
 }
+.video, .stream{
+    color: black;
+    padding: 3px 16px;
+    border-radius: 10px;
+    border: 1px solid green;
+}
+.sections{
+    margin-top: 10%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.submitStreamBtn{
+    background-color: #588f04;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+.cam-section{
+    position: relative;
+    padding-right: 15%;
+}
+.cam-section:after{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3px;
+    margin-left: 4px;
+    content: '';
+    height: 300px;
+    border-radius: 10px;
+    background: #ddd;
+}
+.section-title{
+    margin-bottom: 1%;
+}
+ul{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+li{
+    padding: 5px 10px;
+}
+li a{
+    padding: 5px 10px;
+    /*border: 2px solid #ddd;*/
+    border-radius: 5px;
+    cursor: pointer;
+    background: white;
+}
+#videos, #cams{
+    display: flex;
+    gap: 20px;
+}
+.findCam{
+    padding: 9px 14px;
+    border: 1px solid #ddd;
+}
+a{
+    color: green;
+    text-decoration: none;
+}
+video, img, picture{
+    vertical-align: center;
+}
+.container{
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.header-line{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+header{
+    /*background: black;*/
+}
+li{
+    color: white;
+}
+
+/*//////////////////////////////////////*/
 
 .video-inputs{
     display: flex;
@@ -48,9 +160,6 @@ form{
 .toVidList a:hover{
     box-shadow: 0px 0px 10px rgba(0,0,0, 10%);
 }
-.container{
-    margin: 0 140px;
-}
 .upload-form{
     display: flex;
     flex-direction: column;
@@ -58,21 +167,6 @@ form{
     align-items: start;
     gap: 40px;
     margin-top: 5%;
-}
-.section-title{
-    position: relative;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    font-size: 32px;
-}
-.section-title:after{
-    content: '';
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background: #ddd;
-    width: 100%;
-    height: 0.05em;
 }
 .progressBars{
     display: flex;
@@ -97,7 +191,7 @@ form{
     height: 100%;
     background: #52C78F;
 }
-.label{
+.label-bar{
     margin-top: 7px;
     text-align: center;
     color: black;
@@ -157,24 +251,24 @@ form{
     gap: 30px;
     margin-bottom: 20px;
 }
-#inpFile{
+.inpFile{
     padding: 10px;
-    background: #FF645F;
+    background: #588f04;
     border-radius: 8px;
     color: white;
     margin-right: 15px;
 }
-form button{
-    background: #FF645F;
+#upload_video_btn{
+    background: #588f04;;
     border: 5px solid white;
-    outline: 3px solid #f66732;
+    outline: 3px solid #588f04;;
     font-size: 20px;
     padding: 6px;
     border-radius: 10px;
     transition: .5s;
     color: white;
 }
-form button:hover, form button:focus{
+#upload_video_btn:hover, #upload_video_btn:focus{
     box-shadow: 0px 0px 10px rgba(0,0,0,20%);
 }
 .info-inputs{
@@ -216,76 +310,6 @@ form button:hover, form button:focus{
     border: 1px dashed;
     display: none;
 }
-.better-quality, .typhlocommentary, #better-quality, #typhlocommentary{
-    position: relative;
-    max-width: 20px;
-}
-#better-quality {
-    background: #383838;
-    padding: 2px 5px;
-    font-size: 12px;
-    border-radius: 10px;
-    color: #ddd;
-}
-#typhlocommentary {
-    background: #383838;
-    padding: 2px 5px;
-    font-size: 12px;
-    border-radius: 10px;
-    color: #ddd;
-}
-.better-quality:before, #better-quality:before{
-    opacity: 0;
-    content: 'Здесь улучшено качество';
-    background: white;
-    color: black;
-    position: absolute;
-    z-index: 999;
-    top: -24px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    text-align: center;
-    left: -62px;
-    font-size: 12px;
-    width: 135px;
-    padding: 5px 10px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,10%);
-    transition: 1s;
-}
-.better-quality:hover:before, #better-quality:hover:before{
-    opacity: 1;
-}
-.typhlocommentary:before, #typhlocommentary:before{
-    color: black;
-    opacity: 0;
-    content: 'Это тифлокомментарий';
-    position: absolute;
-    z-index: 999;
-    top: -26px;
-    border: 1px solid #ddd;
-    background: white;
-    border-radius: 10px;
-    text-align: center;
-    left: -60px;
-    font-size: 12px;
-    width: 130px;
-    padding: 5px 10px;
-    box-shadow: 1px 1px 1px rgba(0,0,0,10%);
-    transition: 1s;
-}
-.typhlocommentary:hover:before, #typhlocommentary:hover:before{
-    opacity: 1;
-}
-.video-hints{
-    display: flex;
-    gap: 10px;
-}
-.video-checkbox{
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
 
 @keyframes rotating {
     0%{

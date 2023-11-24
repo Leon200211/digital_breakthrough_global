@@ -1,12 +1,16 @@
-<header style="margin-bottom: 5%; padding: 30px 0">
+<header>
     <div class="container">
         <div class="header-line">
-            <div class="logo">
-                <img src="/templates/default/assets/img/image.png" alt="">
-            </div>
-            <div class="team-logo">
-                <span>Нейр<em>ON</em></span>
-            </div>
+            <div class="header-logo">
+                <img src="templates/default/assets/img/538b1b15-e775-4b0a-aeb4-9fbcb0539db2.png"></img>
+            </div >
+            <nav>
+                <ul>
+                    <li><a href="#">Главное меню</a></li>
+                    <li><a href="#">Личный кабинет</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
+
 </header>

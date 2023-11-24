@@ -958,3 +958,19 @@ Fault: 12-10-2023 19:10:22 - Ошибка в SQL запросе: INSERT INTO upl
 file/var/www/html/engine/base/models/BaseModel.php
  In line 71
 
+Fault: 24-11-2023 14:12:30 - Ошибка в SQL запросе: SELECT upload_video.`id`,upload_video.`video`,upload_video.`name`,upload_video.`description`,upload_video.`date_create`,upload_video.`quality`,upload_video.`commentary`,upload_video.`is_processed` FROM upload_video   ORDER BY upload_video.id DESC - 1054 Unknown column 'upload_video.quality' in 'field list'
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 71
+
+Fault: 24-11-2023 14:12:30 - Ошибка в SQL запросе: SELECT upload_video.`id`,upload_video.`video`,upload_video.`name`,upload_video.`description`,upload_video.`date_create`,upload_video.`quality`,upload_video.`commentary`,upload_video.`is_processed` FROM upload_video   ORDER BY upload_video.id DESC - 1054 Unknown column 'upload_video.quality' in 'field list'
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 71
+
+Fault: 24-11-2023 14:18:34 - Ошибка в SQL запросе: SELECT upload_video.`id`,upload_video.`video`,upload_video.`name`,upload_video.`description`,upload_video.`date_create`,upload_video.`quality`,upload_video.`commentary`,upload_video.`is_processed` FROM upload_video   ORDER BY upload_video.id DESC - 1054 Unknown column 'upload_video.quality' in 'field list'
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 71
+
+Fault: 24-11-2023 14:18:34 - Ошибка в SQL запросе: SELECT upload_video.`id`,upload_video.`video`,upload_video.`name`,upload_video.`description`,upload_video.`date_create`,upload_video.`quality`,upload_video.`commentary`,upload_video.`is_processed` FROM upload_video   ORDER BY upload_video.id DESC - 1054 Unknown column 'upload_video.quality' in 'field list'
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 71
+
