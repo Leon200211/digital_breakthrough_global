@@ -36,7 +36,7 @@ abstract class BaseModel extends BaseModelMethods
         $this->db->query('CREATE DATABASE IF NOT EXISTS `digital-breakthrough-global`');
         $this->db = @new \mysqli($servername, $username, $password, 'digital-breakthrough-global');
         $this->db->query("CREATE TABLE IF NOT EXISTS `upload_video` (`id` int NOT NULL AUTO_INCREMENT,`video` varchar(255) NOT NULL,`json` varchar(255) NOT NULL,`is_processed` int NOT NULL, PRIMARY KEY (id))");
-        $this->db->query("CREATE TABLE IF NOT EXISTS `camera` (`id` int NOT NULL AUTO_INCREMENT,`camera` varchar(255) NOT NULL,`json` varchar(255) NOT NULL, PRIMARY KEY (id))");
+        $this->db->query("CREATE TABLE IF NOT EXISTS `camera` (`id` int NOT NULL AUTO_INCREMENT,`camera` varchar(255) NOT NULL,`camera_href` varchar(255) NOT NULL,`json` varchar(255) NOT NULL, PRIMARY KEY (id))");
 
 
         // отлов и логирование ошибок

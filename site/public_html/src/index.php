@@ -23,6 +23,12 @@ use engine\base\exceptions\RouteException;  // импортируем прост
 use engine\base\exceptions\DbException;  // импортируем пространство имен для исключения БД
 use engine\base\controllers\RouteController;
 
+if (strpos($_SERVER['REQUEST_URI'], '/video/upload') !== false) {
+    $uploadVideo = new \engine\main\controllers\UploadPageController();
+    $uploadVideo->index();
+    echo $uploadVideo->outputData();
+    exit();
+}
 
 if ($_SERVER['REQUEST_URI'] == '/uploadVideo') {
     $uploadVideo = new \engine\main\controllers\UploadPageController();

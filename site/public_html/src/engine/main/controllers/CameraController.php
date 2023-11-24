@@ -15,6 +15,7 @@ class CameraController extends BaseController
     public function index()
     {
         $id = $_GET['id'];
+        if(!$this->model) $this->model = MainModel::getInstance();
         $this->camera = $this->model->read('camera', [
             'where' => ['id' => $id]
         ]);
@@ -24,15 +25,15 @@ class CameraController extends BaseController
     {
         if (empty($_FILES['conf']['name'])) {
             http_response_code(400);
-            echo "Не подходящий формат файла";
-            exit();
+            //echo "Не подходящий формат файла";
+            $this->redirect('/');
         }
 
         $ext = pathinfo($_FILES['conf']['name'], PATHINFO_EXTENSION);
         if (!in_array($ext, $this->_format)) {
             http_response_code(400);
-            echo "Не подходящий формат файла";
-            //exit();
+            //echo "Не подходящий формат файла";
+            $this->redirect('/');
         }
 
         if(!$this->model) $this->model = MainModel::getInstance();
@@ -92,7 +93,7 @@ class CameraController extends BaseController
             // Получаем url и записываев в БД
             $this->model->update('camera', [
                 'camera' => [
-                    'is_processed' => 1,
+                    'camera_href' => 1,
                 ],
                 'where' => ['id' => $idNewVideo + 1]
             ]);

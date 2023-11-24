@@ -34,12 +34,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/default/include/header.php'
                     </div>
                     <div class="section-body">
                         <div class="section-body" id="cams">
-                            <a href="/camera?id=1" class="stream">
-                                cam123
+                            <?php foreach ($this->camera as $camera): ?>
+                            <a href="/camera?id=<?=$camera['id']?>" class="stream">
+                                Камера <?=$camera['camera']?>
                             </a>
-                            <a href="cam.php" class="stream">
-                                cam123
-                            </a>
+                            <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
@@ -50,7 +49,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/default/include/header.php'
                         <h3>Загрузить видео</h3>
                     </div>
                     <div class="section-body">
-                        <a href="upload_video.html" class="label" target="_blank">загрузить видео</a>
+                        <a href="/video/upload" class="label" target="_blank">загрузить видео</a>
                     </div>
                 </div>
                 <div class="section">

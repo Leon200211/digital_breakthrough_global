@@ -22,7 +22,7 @@ class UploadPageController extends BaseController
      */
     public function outputData()
     {
-        return $this->render($_SERVER['DOCUMENT_ROOT'] . '/engine/main/views/uploadVideoPage');
+        return $this->render($_SERVER['DOCUMENT_ROOT'] . '/engine/main/views/upload_video');
     }
 
     public function uploadVideo(): void
