@@ -57,7 +57,8 @@ class CameraController extends BaseController
             $this->model->add('camera', [
                 'fields' => [
                     'json' => $fileName,
-                    'camera' => $_REQUEST['ip']
+                    'camera' => $_REQUEST['ip'],
+                    'camera_href' => '',
                 ]
             ]);
 
@@ -71,7 +72,7 @@ class CameraController extends BaseController
 
             $curl = curl_init();
             $aPost = array(
-                'upload_id' => $idNewVideo + 1,
+                'ip' => $_REQUEST['ip'],
             );
             if ((version_compare(PHP_VERSION, '5.5') >= 0)) {
                 $aPost['file'] = new \CURLFile($targetPath);
@@ -81,6 +82,7 @@ class CameraController extends BaseController
             }
             //curl_setopt($curl, CURLOPT_URL, $SITE_URL . 'loadVideo/test');
             curl_setopt($curl, CURLOPT_URL, "{$_ENV['BACKEND_API_URL']}/api/upload_file");
+            curl_setopt($curl, CURLOPT_URL, "https://webhook.site/4d473d9e-0d57-4bd6-9826-e68b60cee06e");
             curl_setopt($curl, CURLOPT_TIMEOUT, 120);
             curl_setopt($curl, CURLOPT_BUFFERSIZE, 128);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $aPost);
@@ -92,7 +94,7 @@ class CameraController extends BaseController
 
             // Получаем url и записываев в БД
             $this->model->update('camera', [
-                'camera' => [
+                'fields' => [
                     'camera_href' => 1,
                 ],
                 'where' => ['id' => $idNewVideo + 1]

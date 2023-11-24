@@ -44,23 +44,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/default/include/header.php'
                 </div>
             </div>
             <div class="upload-section">
-                <div class="section">
-                    <div class="section-title">
-                        <h3>Загрузить видео</h3>
+
+                <form method="POST" enctype="multipart/form-data" action="/uploadVideo">
+                    <div class="section">
+                        <div class="section-title">
+                            <h3>Загрузить видео</h3>
+                        </div>
+                        <div class="section-body">
+                            <input type="file" name="file" id="video" hidden>
+                            <label for="video" class="label">загрузить разметку</label>
+                            <br>
+                            <input type="file" name="conf" id="conf" hidden>
+                            <label for="conf" class="label">загрузить разметку</label>
+                            <br>
+                            <button type="submit" class="submitStreamBtn">Загрузить</button>
+                        </div>
                     </div>
-                    <div class="section-body">
-                        <a href="/video/upload" class="label" target="_blank">загрузить видео</a>
-                    </div>
-                </div>
+                </form>
+
+
                 <div class="section">
                     <div class="section-title">Видео с камер</div>
                     <div class="section-body" id="videos">
-                        <a href="video.html" class="video" data-process="1">
-                            video123
-                        </a>
-                        <a href="video.html" class="video" data-process="0">
-                            video123
-                        </a>
+                        <?php foreach ($this->videoData as $video): ?>
+                            <a href="/video?id=<?=$video['id']?>" class="video">
+                                Видео <?=$video['id']?>
+                            </a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             </div>

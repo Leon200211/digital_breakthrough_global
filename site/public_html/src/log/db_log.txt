@@ -1070,3 +1070,15 @@ Fault: 24-11-2023 15:41:18 - Ошибка в SQL запросе: UPDATE camera S
 file/var/www/html/engine/base/models/BaseModel.php
  In line 72
 
+Fault: 24-11-2023 16:27:25 - Ошибка в SQL запросе: INSERT INTO camera (`json`,`camera`) VALUE ('test_446485.SLDPRT','222.222.222.222') - 1364 Field 'camera_href' doesn't have a default value
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 16:27:51 - Ошибка в SQL запросе: UPDATE camera SET ip='222.222.222.222' WHERE id='9'  - 1054 Unknown column 'ip' in 'field list'
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 16:29:38 - Ошибка в SQL запросе: UPDATE camera SET ip='222.222.222.222' WHERE id='1'  - 1054 Unknown column 'ip' in 'field list'
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+

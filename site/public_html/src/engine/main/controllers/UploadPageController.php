@@ -27,17 +27,20 @@ class UploadPageController extends BaseController
 
     public function uploadVideo(): void
     {
+
         if (empty($_FILES['file']['name'])) {
             http_response_code(400);
-            echo "Не подходящий формат файла";
-            exit();
+            //echo "Не подходящий формат файла";
+            //exit();
+            $this->redirect('/');
         }
 
         $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
         if (!in_array($ext, $this->_format)) {
             http_response_code(400);
-            echo "Не подходящий формат файла";
-            exit();
+            //echo "Не подходящий формат файла";
+            //exit();
+            $this->redirect('/');
         }
 
         if(!$this->model) $this->model = MainModel::getInstance();
@@ -55,16 +58,16 @@ class UploadPageController extends BaseController
         }
 
         $fileName = 'test_' . random_int(1, 1000000) . '.' . $ext;
-        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_camera_json/" . $fileName;
+        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_video/" . $fileName;
 
-        if (move_uploaded_file($_FILES['file']["tmp_name"], $targetPath)) {
+        $fileName_2 = 'test_' . random_int(1, 1000000) . '.' . $ext;
+        $targetPath_2 = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_video_json/" . $fileName_2;
+
+        if (move_uploaded_file($_FILES['file']["tmp_name"], $targetPath) && move_uploaded_file($_FILES['conf']["tmp_name"], $targetPath_2)) {
             $this->model->add('upload_video', [
                 'fields' => [
                     'video' => $fileName,
-                    'name' => $_REQUEST['name'],
-                    'description' => $_REQUEST['description'],
-                    'quality' => $_REQUEST['quality'] === 'true' ? 1 : 0,
-                    'commentary' => $_REQUEST['commentary'] === 'true' ? 1 : 0,
+                    'json' => $fileName_2,
                     'is_processed' => 0
                 ]
             ]);
@@ -80,17 +83,21 @@ class UploadPageController extends BaseController
             $curl = curl_init();
             $aPost = array(
                 'upload_id' => $idNewVideo + 1,
-                'quality_upgrade' => $_REQUEST['quality'] === 'true' ? 1 : 0,
-                'generate_comments' => $_REQUEST['commentary'] === 'true' ? 1 : 0,
             );
+
+
             if ((version_compare(PHP_VERSION, '5.5') >= 0)) {
                 $aPost['file'] = new \CURLFile($targetPath);
+                $aPost['conf'] = new \CURLFile($targetPath_2);
                 curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
             } else {
                 $aPost['file'] = "@".$targetPath;
+                $aPost['file'] = "@".$targetPath_2;
             }
             //curl_setopt($curl, CURLOPT_URL, $SITE_URL . 'loadVideo/test');
             curl_setopt($curl, CURLOPT_URL, "{$_ENV['BACKEND_API_URL']}/api/upload_file");
+            //curl_setopt($curl, CURLOPT_URL, "https://webhook.site/4d473d9e-0d57-4bd6-9826-e68b60cee06e");
+
             curl_setopt($curl, CURLOPT_TIMEOUT, 120);
             curl_setopt($curl, CURLOPT_BUFFERSIZE, 128);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $aPost);
@@ -141,7 +148,7 @@ class UploadPageController extends BaseController
             exit();
         }
 
-        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_camera_json/" . $videoDb[0]['video'];
+        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_camera/" . $videoDb[0]['video'];
         if (move_uploaded_file($_FILES['file']["tmp_name"], $targetPath)) {
             $this->model->update('upload_video', [
                 'fields' => [
