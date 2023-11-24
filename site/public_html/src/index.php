@@ -36,8 +36,14 @@ if ($_SERVER['REQUEST_URI'] == '/loadVideo') {
     $uploadVideo = new \engine\main\controllers\UploadPageController();
     $uploadVideo->uploadVideoFromApi();
 }
-if ($_SERVER['REQUEST_URI'] == '/upload/video/history') {
-    $uploadVideo = new \engine\main\controllers\UploadPageHistoryController();
+
+
+if (strpos($_SERVER['REQUEST_URI'], '/camera/add') !== false) {
+    $uploadVideo = new \engine\main\controllers\CameraController();
+    $uploadVideo->addCamera();
+}
+if (strpos($_SERVER['REQUEST_URI'], '/camera') !== false) {
+    $uploadVideo = new \engine\main\controllers\CameraController();
     $uploadVideo->index();
     echo $uploadVideo->outputData();
     exit();

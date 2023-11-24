@@ -8,13 +8,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/default/include/header.php'
     <div class="container">
         <div class="sections">
             <div class="cam-section">
-                <form method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data" action="/camera/add">
                     <div class="section">
                         <div class="section-title">
                             <h3>Подключить камеру по ip</h3>
                         </div>
                         <div class="section-body">
-                            <input type="text" class="findCam">
+                            <input type="text" name="ip" class="findCam">
                             <button type="submit" class="submitStreamBtn">Подключиться</button>
                         </div>
                     </div>
@@ -23,11 +23,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/default/include/header.php'
                             <h3>Загрузить разметку</h3>
                         </div>
                         <div class="section-body">
-                            <input type="file" required hidden id="razmetka">
+                            <input type="file" name="conf" required hidden id="razmetka">
                             <label for="razmetka" class="label">загрузить разметку</label>
                         </div>
                     </div>
-
                 </form>
                 <div class="section">
                     <div class="section-title">
@@ -35,10 +34,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/default/include/header.php'
                     </div>
                     <div class="section-body">
                         <div class="section-body" id="cams">
-                            <a href="cam.html" class="stream">
+                            <a href="/camera?id=1" class="stream">
                                 cam123
                             </a>
-                            <a href="cam.html" class="stream">
+                            <a href="cam.php" class="stream">
                                 cam123
                             </a>
                         </div>
@@ -52,14 +51,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/default/include/header.php'
                     </div>
                     <div class="section-body">
                         <a href="upload_video.html" class="label" target="_blank">загрузить видео</a>
-                    </div>
-                </div>
-                <div class="section">
-                    <div class="section-title">
-                        <h3>Загрузить разметку</h3>
-                    </div>
-                    <div class="section-body">
-                        <a href="upload_video.html" class="label" target="_blank">загрузить разметку</a>
                     </div>
                 </div>
                 <div class="section">

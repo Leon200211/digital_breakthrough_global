@@ -25658,3 +25658,7 @@ Fault: 12-10-2023 19:21:20 - Не найден контроллер
 file/var/www/html/engine/base/controllers/RouteController.php
  In line 63
 
+Fault: 24-11-2023 15:21:23 - Отсутствует шаблон - /var/www/html/engine/main/views/camera
+file/var/www/html/engine/base/controllers/BaseController.php
+ In line 127
+

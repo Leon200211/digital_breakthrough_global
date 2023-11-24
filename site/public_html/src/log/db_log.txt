@@ -974,3 +974,59 @@ Fault: 24-11-2023 14:18:34 - Ошибка в SQL запросе: SELECT upload_v
 file/var/www/html/engine/base/models/BaseModel.php
  In line 71
 
+Fault: 24-11-2023 15:20:01 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:20:13 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:20:14 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:20:18 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:20:21 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:23:28 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:23:29 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:23:30 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:23:31 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:23:31 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:23:32 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:23:32 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:23:33 - Ошибка в SQL запросе: SELECT video.* FROM video - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 15:32:01 - Ошибка в SQL запросе: INSERT INTO camera (`json`,`camera`,`is_processed`) VALUE ('test_333857.SLDPRT','345','0') - 1054 Unknown column 'is_processed' in 'field list'
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+

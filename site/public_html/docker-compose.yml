@@ -21,7 +21,7 @@ services:
       context: docker/php-apache
     volumes:
       - ./src:/var/www/html/
-      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./uploads_camera_json.ini:/usr/local/etc/php/conf.d/uploads_camera_json.ini
     ports:
       - 8000:80
 
