@@ -67,7 +67,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/templates/default/include/header.php'
                     <div class="section-title">Видео с камер</div>
                     <div class="section-body" id="videos">
                         <?php foreach ($this->videoData as $video): ?>
-                            <a href="/video?id=<?=$video['id']?>" class="video">
+                            <a href="/video?id=<?=$video['id']?>" id="<?=$video['id']?>" class="video">
                                 Видео <?=$video['id']?>
                             </a>
                         <?php endforeach; ?>

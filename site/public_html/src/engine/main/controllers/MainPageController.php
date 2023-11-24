@@ -27,7 +27,7 @@ class MainPageController extends BaseController
         }
 
         $video = $this->model->read('upload_video');
-        if (!empty($camera)) {
+        if (!empty($video)) {
             $this->videoData = $video;
         } else {
             $this->videoData = [];

@@ -36,6 +36,7 @@ class UploadPageController extends BaseController
         }
 
         $ext = pathinfo($_FILES['file']['name'], PATHINFO_EXTENSION);
+        $ext_2 = pathinfo($_FILES['conf']['name'], PATHINFO_EXTENSION);
         if (!in_array($ext, $this->_format)) {
             http_response_code(400);
             //echo "Не подходящий формат файла";
@@ -60,7 +61,7 @@ class UploadPageController extends BaseController
         $fileName = 'test_' . random_int(1, 1000000) . '.' . $ext;
         $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_video/" . $fileName;
 
-        $fileName_2 = 'test_' . random_int(1, 1000000) . '.' . $ext;
+        $fileName_2 = 'test_' . random_int(1, 1000000) . '.' . $ext_2;
         $targetPath_2 = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_video_json/" . $fileName_2;
 
         if (move_uploaded_file($_FILES['file']["tmp_name"], $targetPath) && move_uploaded_file($_FILES['conf']["tmp_name"], $targetPath_2)) {
@@ -73,31 +74,26 @@ class UploadPageController extends BaseController
             ]);
 
 
-            http_response_code(200);
-            $result = [
-                "id" => $idNewVideo + 1,
-                "status" => 'success'
-            ];
-            echo json_encode($result);
-
             $curl = curl_init();
             $aPost = array(
                 'upload_id' => $idNewVideo + 1,
             );
+            $aPost['file'] = $targetPath;
+            $aPost['conf'] = $targetPath_2;
 
+//            if ((version_compare(PHP_VERSION, '5.5') >= 0)) {
+//                $aPost['file'] = new \CURLFile($targetPath);
+//                $aPost['conf'] = new \CURLFile($targetPath_2);
+//                curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
+//            } else {
+//                $aPost['file'] = "@".$targetPath;
+//                $aPost['conf'] = "@".$targetPath_2;
+//            }
 
-            if ((version_compare(PHP_VERSION, '5.5') >= 0)) {
-                $aPost['file'] = new \CURLFile($targetPath);
-                $aPost['conf'] = new \CURLFile($targetPath_2);
-                curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
-            } else {
-                $aPost['file'] = "@".$targetPath;
-                $aPost['file'] = "@".$targetPath_2;
-            }
             //curl_setopt($curl, CURLOPT_URL, $SITE_URL . 'loadVideo/test');
-            curl_setopt($curl, CURLOPT_URL, "{$_ENV['BACKEND_API_URL']}/api/upload_file");
-            //curl_setopt($curl, CURLOPT_URL, "https://webhook.site/4d473d9e-0d57-4bd6-9826-e68b60cee06e");
-
+            //curl_setopt($curl, CURLOPT_URL, "{$_ENV['BACKEND_API_URL']}/api/upload_file");
+            curl_setopt($curl, CURLOPT_URL, "https://webhook.site/4d473d9e-0d57-4bd6-9826-e68b60cee06e");
+            curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
             curl_setopt($curl, CURLOPT_TIMEOUT, 120);
             curl_setopt($curl, CURLOPT_BUFFERSIZE, 128);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $aPost);
@@ -106,6 +102,8 @@ class UploadPageController extends BaseController
             curl_setopt($curl, CURLOPT_HEADER, 0);
             curl_setopt($curl, CURLOPT_TIMEOUT_MS, 2000);
             $sResponse = curl_exec($curl);
+
+            $this->redirect('/');
 
             exit();
         } else {
@@ -148,10 +146,13 @@ class UploadPageController extends BaseController
             exit();
         }
 
-        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_camera/" . $videoDb[0]['video'];
+        $fileName_2 = 'test_' . random_int(1, 1000000) . '.' . $ext;
+        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_video/" . $fileName_2;
+
         if (move_uploaded_file($_FILES['file']["tmp_name"], $targetPath)) {
             $this->model->update('upload_video', [
                 'fields' => [
+                    'video' => $fileName_2,
                     'is_processed' => 1,
                 ],
                 'where' => ['id' => $videoDb[0]['id']]
@@ -180,7 +181,7 @@ class UploadPageController extends BaseController
 
         if(!$this->model) $this->model = MainModel::getInstance();
         $videoDb = $this->model->read('upload_video', [
-            'fields' => ['id', 'is_processed', 'video'],
+            'fields' => ['id', 'is_processed'],
             'where' => ['id' => $_REQUEST['id']]
         ]);
 
@@ -194,7 +195,6 @@ class UploadPageController extends BaseController
             http_response_code(200);
             $result = [
                 'is_processed' => 1,
-                'video' => $videoDb[0]['video'],
             ];
             echo json_encode($result);
         } else {

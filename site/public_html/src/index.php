@@ -30,11 +30,20 @@ if (strpos($_SERVER['REQUEST_URI'], '/video/upload') !== false) {
     exit();
 }
 
+
+if (strpos($_SERVER['REQUEST_URI'], '/video') !== false) {
+    $uploadVideo = new \engine\main\controllers\VideoController();
+    $uploadVideo->index();
+    echo $uploadVideo->outputData();
+    exit();
+}
+
+
 if ($_SERVER['REQUEST_URI'] == '/uploadVideo') {
     $uploadVideo = new \engine\main\controllers\UploadPageController();
     $uploadVideo->uploadVideo();
 }
-if ($_SERVER['REQUEST_URI'] == '/checkVideo') {
+if (strpos($_SERVER['REQUEST_URI'], '/checkVideo') !== false) {
     $uploadVideo = new \engine\main\controllers\UploadPageController();
     $uploadVideo->checkVideo();
 }

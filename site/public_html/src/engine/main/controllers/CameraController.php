@@ -26,49 +26,32 @@ class CameraController extends BaseController
         if (empty($_FILES['conf']['name'])) {
             http_response_code(400);
             //echo "Не подходящий формат файла";
-            $this->redirect('/');
+            //$this->redirect('/');
         }
 
         $ext = pathinfo($_FILES['conf']['name'], PATHINFO_EXTENSION);
         if (!in_array($ext, $this->_format)) {
             http_response_code(400);
             //echo "Не подходящий формат файла";
-            $this->redirect('/');
+            //$this->redirect('/');
         }
 
         if(!$this->model) $this->model = MainModel::getInstance();
-        $id = $this->model->read('upload_video', [
-            'fields' => ['id'],
-            'limit' => '1',
-            'order' => ['id'],
-            'order_direction' => ['DESC'],
-        ]);
 
-        if (!empty($id)) {
-            $idNewVideo = $id[0]['id'];
-        } else {
-            $idNewVideo = 0;
-        }
 
         $fileName = 'test_' . random_int(1, 1000000) . '.' . $ext;
         $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_camera_json/" . $fileName;
 
         if (move_uploaded_file($_FILES['conf']["tmp_name"], $targetPath)) {
-            $this->model->add('camera', [
+            $id = $this->model->add('camera', [
                 'fields' => [
                     'json' => $fileName,
                     'camera' => $_REQUEST['ip'],
                     'camera_href' => '',
-                ]
+                ],
+                'return_id' => true,
             ]);
 
-
-            http_response_code(200);
-            $result = [
-                "id" => $idNewVideo + 1,
-                "status" => 'success'
-            ];
-            echo json_encode($result);
 
             $curl = curl_init();
             $aPost = array(
@@ -97,10 +80,10 @@ class CameraController extends BaseController
                 'fields' => [
                     'camera_href' => 1,
                 ],
-                'where' => ['id' => $idNewVideo + 1]
+                'where' => ['id' => $id]
             ]);
             // Редирект
-
+            $this->redirect('/');
 
             exit();
         } else {

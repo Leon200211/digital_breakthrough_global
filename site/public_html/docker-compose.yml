@@ -21,14 +21,17 @@ services:
       context: docker/php-apache
     volumes:
       - ./src:/var/www/html/
-      - ./uploads_camera_json.ini:/usr/local/etc/php/conf.d/uploads_camera_json.ini
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
     ports:
       - 8000:80
+    environment:
+      - UPLOAD_LIMIT = 300M
 
   mysql:
     image: mysql:8
     environment:
       - MYSQL_ROOT_PASSWORD=ROOT
+      - UPLOAD_LIMIT = 300M
 
   phpmyadmin:
     image: phpmyadmin

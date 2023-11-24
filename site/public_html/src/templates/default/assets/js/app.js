@@ -6,14 +6,21 @@ videoLinks.forEach(videoLink => {
             headers: {}
         };
 
-        fetch('/get-data', options)
+        var url = '/checkVideo?id=' + videoLink.getAttribute('id');
+
+        fetch(url, options)
             .then(response => response.json())
             .then(body => {
-                console.log(body)
+                if(body.is_processed == 0){
+                    alert('Видео в обработке');
+
+                    window.location.href = '/';
+                } else {
+                    window.location.href = '/video?id=' + videoLink.getAttribute('id');
+                }
             });
-        if(videoLink.getAttribute('data-process') == 1){
-            alert('Видео в обработке');
-            return false;
-        }
+
+        window.location.href = '/';
+        return false;
     }
 })

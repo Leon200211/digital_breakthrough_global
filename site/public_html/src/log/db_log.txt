@@ -1082,3 +1082,15 @@ Fault: 24-11-2023 16:29:38 - Ошибка в SQL запросе: UPDATE camera S
 file/var/www/html/engine/base/models/BaseModel.php
  In line 72
 
+Fault: 24-11-2023 17:10:45 - Ошибка в SQL запросе: SELECT video.* FROM video  WHERE video.id='1' - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 17:10:48 - Ошибка в SQL запросе: SELECT video.* FROM video  WHERE video.id='1' - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
+Fault: 24-11-2023 17:10:55 - Ошибка в SQL запросе: SELECT video.* FROM video  WHERE video.id='1' - 1146 Table 'digital-breakthrough-global.video' doesn't exist
+file/var/www/html/engine/base/models/BaseModel.php
+ In line 72
+
