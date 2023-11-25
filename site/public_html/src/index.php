@@ -12,7 +12,7 @@ session_start(); //стартуем сессию
 
 
 // отключаем сообщение о предупреждениях
-error_reporting(0);
+//error_reporting(0);
 
 
 require_once 'config.php';  // базовые настройки для хостинга

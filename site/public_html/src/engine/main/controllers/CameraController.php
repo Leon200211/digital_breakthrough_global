@@ -40,7 +40,7 @@ class CameraController extends BaseController
 
 
         $fileName = 'test_' . random_int(1, 1000000) . '.' . $ext;
-        $targetPath = "/files/uploads_camera_json/" . $fileName;
+        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_camera_json/" . $fileName;
 
         if (move_uploaded_file($_FILES['conf']["tmp_name"], $targetPath)) {
             $id = $this->model->add('camera', [

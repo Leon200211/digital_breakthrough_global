@@ -23,20 +23,17 @@ abstract class BaseModel extends BaseModelMethods
     {
         // подключение к БД
         //$this->db = @new \mysqli(HOST, USER, PASS, DB_NAME);
-        $servername = "mysql";
-        $username = "root";
-        $password = "ROOT";
-        //$this->db = mysqli_connect($servername, $username, $password);
+        $servername = "localhost";
+        $username = "u1988986_default";
+        $password = "EkwrOE9r8eS35d7b";
+        //$this->db = mysqli_connect($servername, $username, $password, 'u1988986_default');
 
 
-        $this->db = @new \mysqli($servername, $username, $password);
-
-
-
-        $this->db->query('CREATE DATABASE IF NOT EXISTS `digital-breakthrough-global`');
-        $this->db = @new \mysqli($servername, $username, $password, 'digital-breakthrough-global');
-        $this->db->query("CREATE TABLE IF NOT EXISTS `upload_video` (`id` int NOT NULL AUTO_INCREMENT,`video` varchar(255) NOT NULL,`json` varchar(255) NOT NULL,`is_processed` int NOT NULL, PRIMARY KEY (id))");
-        $this->db->query("CREATE TABLE IF NOT EXISTS `camera` (`id` int NOT NULL AUTO_INCREMENT,`camera` varchar(255) NOT NULL,`camera_href` varchar(255) NOT NULL,`json` varchar(255) NOT NULL, PRIMARY KEY (id))");
+        $this->db = @new \mysqli($servername, $username, $password, 'u1988986_default');
+//        $this->db->query('CREATE DATABASE IF NOT EXISTS `digital-breakthrough-global`');
+//        $this->db = @new \mysqli($servername, $username, $password, 'digital-breakthrough-global');
+//        $this->db->query("CREATE TABLE IF NOT EXISTS `upload_video` (`id` int NOT NULL AUTO_INCREMENT,`video` varchar(255) NOT NULL,`json` varchar(255) NOT NULL,`is_processed` int NOT NULL, PRIMARY KEY (id))");
+//        $this->db->query("CREATE TABLE IF NOT EXISTS `camera` (`id` int NOT NULL AUTO_INCREMENT,`camera` varchar(255) NOT NULL,`camera_href` varchar(255) NOT NULL,`json` varchar(255) NOT NULL, PRIMARY KEY (id))");
 
 
         // отлов и логирование ошибок
