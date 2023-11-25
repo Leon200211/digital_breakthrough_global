@@ -59,16 +59,16 @@ class UploadPageController extends BaseController
         }
 
         $fileName = 'test_' . random_int(1, 1000000) . '.' . $ext;
-        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_video/" . $fileName;
+        $targetPath = "/files/uploads_video/" . $fileName;
 
         $fileName_2 = 'test_' . random_int(1, 1000000) . '.' . $ext_2;
-        $targetPath_2 = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_video_json/" . $fileName_2;
+        $targetPath_2 = "/files/uploads_video_json/" . $fileName_2;
 
         if (move_uploaded_file($_FILES['file']["tmp_name"], $targetPath) && move_uploaded_file($_FILES['conf']["tmp_name"], $targetPath_2)) {
             $this->model->add('upload_video', [
                 'fields' => [
                     'video' => $fileName,
-                    'json' => $fileName_2,
+                    'conf' => $fileName_2,
                     'is_processed' => 0
                 ]
             ]);

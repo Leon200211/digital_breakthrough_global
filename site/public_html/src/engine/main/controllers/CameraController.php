@@ -40,7 +40,7 @@ class CameraController extends BaseController
 
 
         $fileName = 'test_' . random_int(1, 1000000) . '.' . $ext;
-        $targetPath = $_SERVER['DOCUMENT_ROOT'] . "/files/uploads_camera_json/" . $fileName;
+        $targetPath = "/files/uploads_camera_json/" . $fileName;
 
         if (move_uploaded_file($_FILES['conf']["tmp_name"], $targetPath)) {
             $id = $this->model->add('camera', [
@@ -57,15 +57,20 @@ class CameraController extends BaseController
             $aPost = array(
                 'ip' => $_REQUEST['ip'],
             );
-            if ((version_compare(PHP_VERSION, '5.5') >= 0)) {
-                $aPost['file'] = new \CURLFile($targetPath);
-                curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
-            } else {
-                $aPost['file'] = "@".$targetPath;
-            }
+//            if ((version_compare(PHP_VERSION, '5.5') >= 0)) {
+//                $aPost['file'] = new \CURLFile($targetPath);
+//                curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
+//            } else {
+//                $aPost['file'] = "@".$targetPath;
+//            }
+
+            $aPost['file'] = $targetPath;
+
             //curl_setopt($curl, CURLOPT_URL, $SITE_URL . 'loadVideo/test');
             curl_setopt($curl, CURLOPT_URL, "{$_ENV['BACKEND_API_URL']}/api/upload_file");
-            curl_setopt($curl, CURLOPT_URL, "https://webhook.site/4d473d9e-0d57-4bd6-9826-e68b60cee06e");
+            //curl_setopt($curl, CURLOPT_URL, "https://webhook.site/4d473d9e-0d57-4bd6-9826-e68b60cee06e");
+            curl_setopt($curl, CURLOPT_SAFE_UPLOAD, true);
+
             curl_setopt($curl, CURLOPT_TIMEOUT, 120);
             curl_setopt($curl, CURLOPT_BUFFERSIZE, 128);
             curl_setopt($curl, CURLOPT_POSTFIELDS, $aPost);
